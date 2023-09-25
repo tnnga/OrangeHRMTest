@@ -54,6 +54,7 @@ public class BaseSetup {
         driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         return driver;
+
     }
 
     @Parameters({ "browserType", "appURL" })
