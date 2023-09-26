@@ -22,12 +22,12 @@ public class ValidateHelper {
         js = (JavascriptExecutor) driver;
     }
     public void setText(By element, String value){
-        wait.until(ExpectedConditions.elementToBeClickable(element));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(element));
         driver.findElement(element).clear();
         driver.findElement(element).sendKeys(value);
     }
     public void clickElement(By element){
-        wait.until(ExpectedConditions.elementToBeClickable(element));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(element));
         driver.findElement(element).click();
         //js.executeScript("arguments[0].click();", driver.findElement(element));
     }
@@ -45,6 +45,12 @@ public class ValidateHelper {
         } catch (Throwable error){
             Assert.fail("Timeout waiting for page load request.");
         }
+    }
+    public boolean vertifyUrl(String url){
+        System.out.println(driver.getCurrentUrl());
+        System.out.println(url);
+
+        return driver.getCurrentUrl().contains(url);
     }
     public void Sleep(int time){
         try {
