@@ -1,9 +1,8 @@
-package com.nnga.base;
+package com.nnga.commons;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -31,19 +30,19 @@ public class ValidateHelper {
         driver.findElement(element).click();
         //js.executeScript("arguments[0].click();", driver.findElement(element));
     }
-    public void waitForPageLoaded(){
+    public void waitForPageLoaded() {
         ExpectedCondition<Boolean> expectation = new ExpectedCondition<Boolean>() {
-            @Override
             public Boolean apply(WebDriver driver) {
-                return ((JavascriptExecutor) driver).executeScript("return document.readyState")
-                        .toString().equals("complete");
+                return ((JavascriptExecutor) driver).executeScript("return document.readyState").toString()
+                        .equals("complete");
             }
         };
-        try{
+        try {
+            Thread.sleep(1000);
             WebDriverWait wait = new WebDriverWait(driver, timeoutWaitForPageLoaded);
             wait.until(expectation);
-        } catch (Throwable error){
-            Assert.fail("Timeout waiting for page load request.");
+        } catch (Throwable error) {
+            Assert.fail("Timeout waiting for Page Load Request to complete.");
         }
     }
     public boolean vertifyUrl(String url){
@@ -52,6 +51,11 @@ public class ValidateHelper {
 
         return driver.getCurrentUrl().contains(url);
     }
+    public boolean vertifyElementText(By element, String textValue){
+        wait.until(ExpectedConditions.visibilityOfElementLocated(element));
+        return driver.findElement(element).getText().equals(textValue);
+    }
+
     public void Sleep(int time){
         try {
             Thread.sleep(time);

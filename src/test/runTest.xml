@@ -1,8 +1,14 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
-<suite name="Suite" verbose="1">
-    <test name="OrangeHRM_Test">
+<suite name="OrangeHRMSuite" verbose="1">
+    <parameter name="browserType" value="chrome" />
+    <parameter name="webURL"
+               value="https://opensource-demo.orangehrmlive.com/web/index.php/auth/login" />
+    <test name="OrangeHRMSignInTest">
         <classes>
-            <class name="NewTest">
+            <class name="com.nnga.testcases.SignInTest">
+                <methods>
+                    <include name="signPage"/>
+                </methods>
             </class>
         </classes>
     </test>

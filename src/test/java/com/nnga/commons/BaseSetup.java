@@ -1,4 +1,4 @@
-package com.nnga.base;
+package com.nnga.commons;
 
 import java.util.concurrent.TimeUnit;
 
@@ -13,59 +13,55 @@ public class BaseSetup {
 
     private WebDriver driver;
 
-    static String driverPath = "resources\\drivers\\";
-
     public WebDriver getDriver() {
         return driver;
     }
 
     //Hàm này để tùy chọn Browser. Cho chạy trước khi gọi class này (BeforeClass)
-    private void setDriver(String browserType, String appURL) {
+    private void setDriver(String browserType, String webURL) {
         switch (browserType) {
             case "chrome":
-                driver = initChromeDriver(appURL);
+                driver = initChromeDriver(webURL);
                 break;
             case "firefox":
-                driver = initFirefoxDriver(appURL);
+                driver = initFirefoxDriver(webURL);
                 break;
             default:
                 System.out.println("Browser: " + browserType + " is invalid, Launching Chrome as browser of choice...");
-                driver = initChromeDriver(appURL);
+                driver = initChromeDriver(webURL);
         }
     }
 
 
     //Khởi tạo cấu hình của các Browser để đưa vào Switch Case
 
-    private static WebDriver initChromeDriver(String appURL) {
+    private static WebDriver initChromeDriver(String webURL) {
         System.out.println("Launching Chrome browser...");
-        System.setProperty("webdriver.chrome.driver", driverPath + "chromedriver.exe");
         WebDriver driver = new ChromeDriver();
         driver.manage().window().maximize();
-        driver.navigate().to(appURL);
+        driver.navigate().to(webURL);
         driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         return driver;
     }
 
-    private static WebDriver initFirefoxDriver(String appURL) {
+    private static WebDriver initFirefoxDriver(String webURL) {
         System.out.println("Launching Firefox browser...");
-        System.setProperty("webdriver.gecko.driver", driverPath + "geckodriver.exe");
         WebDriver driver = new FirefoxDriver();
         driver.manage().window().maximize();
-        driver.navigate().to(appURL);
+        driver.navigate().to(webURL);
         driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         return driver;
     }
 
     // Chạy hàm initializeTestBaseSetup trước hết khi class này được gọi
-    @Parameters({ "browserType", "appURL" })
+    @Parameters({ "browserType", "webURL" })
     @BeforeClass
-    public void initializeTestBaseSetup(String browserType, String appURL) {
+    public void initializeTestBaseSetup(String browserType, String webURL) {
         try {
             // Khởi tạo driver và browser
-            setDriver(browserType, appURL);
+            setDriver(browserType, webURL);
         } catch (Exception e) {
             System.out.println("Error..." + e.getStackTrace());
         }
@@ -73,7 +69,7 @@ public class BaseSetup {
 
     @AfterClass
     public void tearDown() throws Exception {
-        Thread.sleep(2000);
+        Thread.sleep(3000);
         driver.quit();
     }
 }
