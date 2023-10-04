@@ -5,11 +5,7 @@
                value="https://opensource-demo.orangehrmlive.com/web/index.php/auth/login" />
     <test name="OrangeHRMSignInTest">
         <classes>
-            <class name="com.nnga.testcases.SignInTest">
-                <methods>
-                    <include name="signPage"/>
-                </methods>
-            </class>
+            <class name="com.nnga.testcases.SignInTest"/>
         </classes>
     </test>
 </suite>

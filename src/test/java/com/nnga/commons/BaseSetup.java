@@ -17,7 +17,6 @@ public class BaseSetup {
         return driver;
     }
 
-    //Hàm này để tùy chọn Browser. Cho chạy trước khi gọi class này (BeforeClass)
     private void setDriver(String browserType, String webURL) {
         switch (browserType) {
             case "chrome":
@@ -31,9 +30,6 @@ public class BaseSetup {
                 driver = initChromeDriver(webURL);
         }
     }
-
-
-    //Khởi tạo cấu hình của các Browser để đưa vào Switch Case
 
     private static WebDriver initChromeDriver(String webURL) {
         System.out.println("Launching Chrome browser...");
@@ -55,8 +51,7 @@ public class BaseSetup {
         return driver;
     }
 
-    // Chạy hàm initializeTestBaseSetup trước hết khi class này được gọi
-    @Parameters({ "browserType", "webURL" })
+    @Parameters({"browserType", "webURL"})
     @BeforeClass
     public void initializeTestBaseSetup(String browserType, String webURL) {
         try {

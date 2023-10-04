@@ -1,4 +1,4 @@
-package com.nnga.commons;
+package com.nnga.resources;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -10,26 +10,30 @@ import org.testng.Assert;
 
 import java.time.Duration;
 
-public class ValidateHelper {
+public class Resources {
     private WebDriver driver;
     private WebDriverWait wait;
     private final Duration timeoutWaitForPageLoaded = Duration.ofSeconds(20);
     JavascriptExecutor js;
-    public ValidateHelper(WebDriver driver){
+
+    public Resources(WebDriver driver) {
         this.driver = driver;
         wait = new WebDriverWait(driver, Duration.ofSeconds(5));
         js = (JavascriptExecutor) driver;
     }
-    public void setText(By element, String value){
+
+    public void setText(By element, String value) {
         wait.until(ExpectedConditions.visibilityOfElementLocated(element));
         driver.findElement(element).clear();
         driver.findElement(element).sendKeys(value);
     }
-    public void clickElement(By element){
+
+    public void clickElement(By element) {
         wait.until(ExpectedConditions.visibilityOfElementLocated(element));
         driver.findElement(element).click();
         //js.executeScript("arguments[0].click();", driver.findElement(element));
     }
+
     public void waitForPageLoaded() {
         ExpectedCondition<Boolean> expectation = new ExpectedCondition<Boolean>() {
             public Boolean apply(WebDriver driver) {
@@ -45,18 +49,20 @@ public class ValidateHelper {
             Assert.fail("Timeout waiting for Page Load Request to complete.");
         }
     }
-    public boolean vertifyUrl(String url){
+
+    public boolean vertifyUrl(String url) {
         System.out.println(driver.getCurrentUrl());
         System.out.println(url);
 
         return driver.getCurrentUrl().contains(url);
     }
-    public boolean vertifyElementText(By element, String textValue){
+
+    public boolean vertifyElementText(By element, String textValue) {
         wait.until(ExpectedConditions.visibilityOfElementLocated(element));
         return driver.findElement(element).getText().equals(textValue);
     }
 
-    public void Sleep(int time){
+    public void Sleep(int time) {
         try {
             Thread.sleep(time);
         } catch (InterruptedException e) {

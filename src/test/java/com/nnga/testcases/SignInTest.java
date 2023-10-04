@@ -1,33 +1,32 @@
 package com.nnga.testcases;
 
 import com.nnga.commons.BaseSetup;
-import io.github.bonigarcia.wdm.WebDriverManager;
+import com.nnga.resources.ExcelHelpers;
+import com.nnga.resources.PropertiesFile;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.*;
 
 import com.nnga.pages.SignInPage;
-import com.nnga.commons.ValidateHelper;
 
 public class SignInTest extends BaseSetup {
     private WebDriver driver;
-    private ValidateHelper validateHelper;
     private SignInPage signInPage;
+    ExcelHelpers excelHelpers;
 
     @BeforeClass
     public void setUpBrowser() {
         driver = getDriver();
+        excelHelpers = new ExcelHelpers();
+        PropertiesFile.setPropertiesFile();
     }
 
     @Test
-    public void signPage() {
+    public void signPage() throws Exception {
+        //excelHelpers.setExcelFile("src/test/DataResources/DataTest.xlsx","Sheet1");
         signInPage = new SignInPage(driver);
-        signInPage.SignIn("Admin", "admin123");
+        //signInPage.SignIn(excelHelpers.getCellData("Username",1), excelHelpers.getCellData("Password", 1));
+        //excelHelpers.setCellData("Admin123", 3, 4);
+        signInPage.SignIn(PropertiesFile.getPropValue("username"), PropertiesFile.getPropValue("password"));
+        System.out.println("Login thành công");
     }
-
-    @AfterClass
-    public void closeBrowser() {
-        driver.close();
-    }
-
 }
