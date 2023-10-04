@@ -28,5 +28,7 @@ public class SignInTest extends BaseSetup {
         //excelHelpers.setCellData("Admin123", 3, 4);
         signInPage.SignIn(PropertiesFile.getPropValue("username"), PropertiesFile.getPropValue("password"));
         System.out.println("Login thành công");
+        System.out.println("Login thành công");
+        
     }
 }
