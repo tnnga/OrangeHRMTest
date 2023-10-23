@@ -23,15 +23,21 @@ public class Resources {
     }
 
     public void setText(By element, String value) {
+        waitForPageLoaded();
         wait.until(ExpectedConditions.visibilityOfElementLocated(element));
         driver.findElement(element).clear();
         driver.findElement(element).sendKeys(value);
     }
 
     public void clickElement(By element) {
+        waitForPageLoaded();
         wait.until(ExpectedConditions.visibilityOfElementLocated(element));
         driver.findElement(element).click();
-        //js.executeScript("arguments[0].click();", driver.findElement(element));
+    }
+    public void clickElementByJS(By element){
+        waitForPageLoaded();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(element));
+        js.executeScript("arguments[0].click();", driver.findElement(element));
     }
 
     public void waitForPageLoaded() {
@@ -42,7 +48,6 @@ public class Resources {
             }
         };
         try {
-            Thread.sleep(1000);
             WebDriverWait wait = new WebDriverWait(driver, timeoutWaitForPageLoaded);
             wait.until(expectation);
         } catch (Throwable error) {
@@ -51,6 +56,7 @@ public class Resources {
     }
 
     public boolean vertifyUrl(String url) {
+        waitForPageLoaded();
         System.out.println(driver.getCurrentUrl());
         System.out.println(url);
 
@@ -58,15 +64,8 @@ public class Resources {
     }
 
     public boolean vertifyElementText(By element, String textValue) {
+        waitForPageLoaded();
         wait.until(ExpectedConditions.visibilityOfElementLocated(element));
         return driver.findElement(element).getText().equals(textValue);
-    }
-
-    public void Sleep(int time) {
-        try {
-            Thread.sleep(time);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
     }
 }

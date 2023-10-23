@@ -3,9 +3,13 @@
     <parameter name="browserType" value="chrome" />
     <parameter name="webURL"
                value="https://opensource-demo.orangehrmlive.com/web/index.php/auth/login" />
+    <listeners>
+        <!--        <listener class-name="com.nnga.listener.TestListener"/>-->
+        <listener class-name="com.nnga.utils.listener.ReportListener"/>
+    </listeners>
     <test name="OrangeHRMSignInTest">
         <classes>
-            <class name="com.nnga.testcases.SignInTest"/>
+            <class name="com.nnga.projects.testcases.AdminTest"/>
         </classes>
     </test>
 </suite>
