@@ -3,6 +3,7 @@ package com.nnga.projects.pages;
 import com.nnga.resources.Resources;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.testng.Assert;
 
 public class SignInPage {
     WebDriver driver;
@@ -21,7 +22,6 @@ public class SignInPage {
         resources.setText(usernameInput, email);
         resources.setText(passwordInput, password);
         resources.clickElement(loginButton);
-
         return new AdminPage(driver);
     }
 }

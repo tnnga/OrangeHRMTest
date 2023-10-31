@@ -14,10 +14,10 @@ public class AdminPage {
         resources = new Resources(driver);
     }
 
-    private By adminButton = By.xpath("//ul[@class='oxd-main-menu']//span[contains(.,'Admin')]1");
+    private By adminButton = By.xpath("//ul[@class='oxd-main-menu']//span[contains(.,'Admin')]");
     private String urlAdminPage = "/admin/viewSystemUsers";
     private By addAdminButton = By.xpath("//button[normalize-space()='Add']");
-    private String urlAddAdmin = "/admin/saveSystemUser/..";
+    private String urlAddAdmin = "/admin/saveSystemUser";
 
     public void openAdminPage() {
         resources.clickElement(adminButton);

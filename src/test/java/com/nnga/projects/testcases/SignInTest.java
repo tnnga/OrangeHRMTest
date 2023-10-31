@@ -6,6 +6,7 @@ import com.nnga.utils.helpers.RecordVideo;
 import com.nnga.utils.helpers.ExcelFileHelper;
 import com.nnga.utils.helpers.PropertiesFileHelper;
 import org.openqa.selenium.WebDriver;
+import org.testng.Assert;
 import org.testng.ITestResult;
 import org.testng.annotations.*;
 
@@ -24,7 +25,6 @@ public class SignInTest extends BaseSetupForXML {
         excelHelpers = new ExcelFileHelper();
         PropertiesFileHelper.setPropertiesFile();
         resources = new Resources(driver);
-        RecordVideo.startRecord("SignIn");
     }
 
     @Test
@@ -34,7 +34,6 @@ public class SignInTest extends BaseSetupForXML {
         //signInPage.SignIn(excelHelpers.getCellData("Username",1), excelHelpers.getCellData("Password", 1));
         //excelHelpers.setCellData("Admin123", 3, 4);
         signInPage.SignIn(PropertiesFileHelper.getPropValue("username"), PropertiesFileHelper.getPropValue("password"));
-
 
         System.out.println("Login thành công");
     }
@@ -51,9 +50,4 @@ public class SignInTest extends BaseSetupForXML {
             }
         }
     }
-    @AfterClass
-    public void tearDownClass() throws Exception {
-        RecordVideo.stopRecord();
-    }
-
 }

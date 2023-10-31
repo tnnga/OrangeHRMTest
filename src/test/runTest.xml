@@ -4,8 +4,8 @@
     <parameter name="webURL"
                value="https://opensource-demo.orangehrmlive.com/web/index.php/auth/login" />
     <listeners>
-        <!--        <listener class-name="com.nnga.listener.TestListener"/>-->
-        <listener class-name="com.nnga.utils.listener.ReportListener"/>
+                <listener class-name="com.nnga.utils.listener.ReportListener"/>
+<!--        <listener class-name="com.nnga.utils.listener.ReportListener"/>-->
     </listeners>
     <test name="OrangeHRMSignInTest">
         <classes>

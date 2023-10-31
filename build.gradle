@@ -27,6 +27,11 @@ dependencies {
     implementation group: 'com.github.stephenc.monte', name: 'monte-screen-recorder', version: '0.7.7.0'
 // https://mvnrepository.com/artifact/com.aventstack/extentreports
     implementation group: 'com.aventstack', name: 'extentreports', version: '5.1.1'
+    // https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-core
+    implementation group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.21.1'
+// https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-api
+    implementation group: 'org.apache.logging.log4j', name: 'log4j-api', version: '2.21.1'
+
 }
 
 test {

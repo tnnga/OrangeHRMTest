@@ -28,7 +28,11 @@ public class Resources {
         driver.findElement(element).clear();
         driver.findElement(element).sendKeys(value);
     }
-
+    public String getText(By element){
+        waitForPageLoaded();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(element));
+        return driver.findElement(element).getText();
+    }
     public void clickElement(By element) {
         waitForPageLoaded();
         wait.until(ExpectedConditions.visibilityOfElementLocated(element));
@@ -67,5 +71,12 @@ public class Resources {
         waitForPageLoaded();
         wait.until(ExpectedConditions.visibilityOfElementLocated(element));
         return driver.findElement(element).getText().equals(textValue);
+    }
+    public boolean elementIsDisplay(By element){
+        waitForPageLoaded();
+        if(wait.until(ExpectedConditions.visibilityOfElementLocated(element)).isDisplayed()){
+            return true;
+        }
+        return false;
     }
 }
