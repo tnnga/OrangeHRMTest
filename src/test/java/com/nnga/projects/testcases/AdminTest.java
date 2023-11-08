@@ -40,9 +40,9 @@ public class AdminTest extends BaseSetupMulti {
     @Test (priority = 2)
     public void showAdminPage() {
         adminPage.openAdminPage();
-        createAdminPage = adminPage.openAddAdminForm();
+        //createAdminPage = adminPage.openAddAdminForm();
     }
-    @Test(priority = 3)
+    @Test(priority = 4)
     public void createAdmin(){
         createAdminPage.sendUserRole();
         createAdminPage.sendEmployeeName();
@@ -50,6 +50,10 @@ public class AdminTest extends BaseSetupMulti {
         createAdminPage.sendUsername();
         createAdminPage.sendPassword();
         createAdminPage.checkCreate();
+    }
+    @Test(priority = 3)
+    public void searchEmployee(){
+        adminPage.searchAndResetEmployee();
     }
     @AfterMethod
     public void takeScreenshot(ITestResult result) {

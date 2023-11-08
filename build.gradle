@@ -37,3 +37,6 @@ dependencies {
 test {
     useJUnitPlatform()
 }
+wrapper {
+    gradleVersion = '9.0'  // Phiên bản Gradle hiện tại
+}

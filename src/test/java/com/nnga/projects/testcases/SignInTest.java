@@ -1,6 +1,7 @@
 package com.nnga.projects.testcases;
 
 import com.nnga.browsers.BaseSetupForXML;
+import com.nnga.browsers.BaseSetupMulti;
 import com.nnga.utils.helpers.CaptureHelper;
 import com.nnga.utils.helpers.RecordVideo;
 import com.nnga.utils.helpers.ExcelFileHelper;
@@ -18,16 +19,19 @@ public class SignInTest extends BaseSetupForXML {
     private SignInPage signInPage;
     private ExcelFileHelper excelHelpers;
     private Resources resources;
-
     @BeforeClass
-    public void setUpBrowser() throws Exception {
-        driver = getDriver();
+    public void setUp(){
+        driver = new BaseSetupMulti().setupDriver("chrom");
+        resources = new Resources(driver);
         excelHelpers = new ExcelFileHelper();
         PropertiesFileHelper.setPropertiesFile();
         resources = new Resources(driver);
     }
-
-    @Test
+    @Test(priority = 0)
+    public void gotoBrower(){
+        driver.get("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
+    }
+    @Test(priority = 1)
     public void signPage() {
         //excelHelpers.setExcelFile("src/test/DataResources/DataTest.xlsx","Sheet1");
         signInPage = new SignInPage(driver);

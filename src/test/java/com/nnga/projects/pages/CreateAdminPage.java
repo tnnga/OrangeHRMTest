@@ -30,7 +30,7 @@ public class CreateAdminPage {
     private String statusValue = "Enabled";
     private By statusText = By. xpath(" //div[contains(text(),'Enabled')]");
     private By usernameInput = By.xpath("//div[@class='oxd-form-row']//div[@class='oxd-grid-2 orangehrm-full-width-grid']//div[@class='oxd-grid-item oxd-grid-item--gutters']//div[@class='oxd-input-group oxd-input-field-bottom-space']//div//input[@class='oxd-input oxd-input--active']");
-    private String usernameValue = "nnga1247";
+    private String usernameValue = "nnga1223399";
     private By userNameInvalidText = By.xpath("//span[@class='oxd-text oxd-text--span oxd-input-field-error-message oxd-input-group__message']");
     private By passwordInput = By.xpath("//div[@class='oxd-grid-item oxd-grid-item--gutters user-password-cell']//div[@class='oxd-input-group oxd-input-field-bottom-space']//div//input[@type='password']");
     private String passwordValue = "nga12345";
@@ -41,7 +41,7 @@ public class CreateAdminPage {
     private By usernameSearchInput= By.xpath("//div[@class='oxd-input-group oxd-input-field-bottom-space']//div//input[@class='oxd-input oxd-input--active']");
     private By searchButton = By.xpath("//button[normalize-space()='Search']");
     private By resultForSearchText = By.xpath("//span[normalize-space()='(1) Record Found']");
-    public void sendUserRole(){
+   public void sendUserRole(){
         resources.clickElement(userRoleDropdown);
         action.sendKeys(Keys.ARROW_DOWN).build().perform();
         action.sendKeys(Keys.ENTER).build().perform();
@@ -56,9 +56,6 @@ public class CreateAdminPage {
         }
         action.sendKeys(Keys.ARROW_DOWN).build().perform();
         action.sendKeys(Keys.ENTER).build().perform();
-//        if(resources.elementIsDisplay(userNameInvalidText)){
-//            Log.error("Username Invalid");
-//        }
     }
     public void sendStatus(){
         resources.clickElement(statusDropdown);
@@ -76,22 +73,22 @@ public class CreateAdminPage {
             Log.error("Password not match");
         }
         resources.clickElement(saveButton);
-
-    }
-    public void checkCreate(){
         try {
             Thread.sleep(7000);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
+    }
+    public void checkCreate(){
         resources.setText(usernameSearchInput, usernameValue);
         resources.clickElement(searchButton);
         String result = resources.getText(resultForSearchText);
         Assert.assertTrue(result.contains("(1) Record Found"));
         List<WebElement> test = driver.findElements(By.xpath("//div[@role='table']"));
-        for(int i = 0; i < test.size(); i ++){
-            System.out.println(test.get(i).getText());
-        }
+        for(int i = 1; i < test.size() + 1; i ++){
+            WebElement usernameItems = driver.findElement(By.xpath("//body/div[@id='app']/div[1]/div[2]/div[2]/div[1]/div[2]/div[3]/div[1]/div[2]/div["+ i +"]/div[1]/div[2]"));
+            Assert.assertEquals(usernameItems.getText(), usernameValue);
+       }
 
     }
 }
